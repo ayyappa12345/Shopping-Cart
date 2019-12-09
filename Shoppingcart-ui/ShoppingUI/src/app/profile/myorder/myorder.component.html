@@ -1,0 +1,66 @@
+
+     <ng-container *ngIf="myorders.length>0">
+      <div class="items mb-3" *ngFor="let order of myorders">
+          <div class="cartitem card row">
+          <div class="card-header d-flex"><span> <button class="btn btn-sm btn-primary">{{order.id}}</button></span>
+      
+          </div>
+        <div class="card-body row">
+<div class="d-flex flex-column row w-100" *ngFor="let cartItem of order.products">
+  <div class="card-body row">
+      <div class="col-sm-2 d-flex cart-image-section">
+          <img class="w-100" [src]="cartItem.images">
+          
+        </div>
+  
+        <div class="col-sm-6">
+            <h5>{{cartItem.title}}</h5>
+            <h6><small>{{cartItem.desc}}</small></h6>
+            <div class="d-flex flex-row">
+            <h6 class="text-default">{{cartItem.price | currency:"₹":'symbol':'1.0'}} </h6>
+            <h6 class="text-muted px-3"><del>{{cartItem.actualprice | currency:"₹":'symbol':'1.0'}} </del></h6>
+            <h6 class="text-success">{{cartItem.offerPrice}}% off</h6>
+  
+            
+            </div>
+          <!-- <p><button type="button" (click)="removeItem(cartItem)" type="button" class="btn btn-sm btn-outline-danger"><i class='material-icons'>
+              delete
+            </i></button></p> -->
+          </div>
+          
+  </div>
+   
+
+        </div>
+  </div>
+        <div class="card-footer d-flex flex-row">
+        <p><span class="text-muted">Order On:</span> <span class="font-weight-bol">{{order.ordertime | date}}</span></p>
+        <span class="spacer"></span>
+         <p> <span class="text-muted">Total Value:</span> <span class="font-weight-bol">{{order.totalamount | currency:"₹":'symbol':'1.0'}}</span></p>
+        </div>
+       
+        </div>
+
+  </div>
+</ng-container>
+<ng-container *ngIf="myorders.length===0">
+
+    <div class="card">
+        <div class="card-header">
+          My Order
+        </div>
+        <div class="card-body">
+          <div class="empty text-center">
+             <p>
+               <i class='material-icons' style="font-size:100px;">
+                  add_shopping_cart
+                </i>
+              </p> 
+              <h4>You did not purchage any thing as such.</h4>
+             
+              <p><a routerLink="/products" class="btn btn-primary">Continue Shopping</a></p>
+    
+          </div>
+        </div>
+      </div>
+</ng-container>

@@ -1,0 +1,14 @@
+{
+    "development":{
+        "PORT":3000,
+        "mongoose_URL":"mongodb+srv://ayyappa:alampalli123@cluster0-onoi8.mongodb.net/PostForm",
+        "security":"security_CODE",
+        "expires":"1h"
+    },
+    "production":{
+        "PORT":80,
+        "mongoose_URL":"mongodb+srv://ayyappa:alampalli123@cluster0-onoi8.mongodb.net/PostForm",
+        "security":"security_CODE",
+        "expires":"1h"
+    }
+}

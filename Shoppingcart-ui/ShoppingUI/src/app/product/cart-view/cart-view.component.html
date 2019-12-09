@@ -1,0 +1,170 @@
+<div class="container d-flex flex-column justify-content-center grid-container mt-3 align-items-center h-50" *ngIf="productIsLoaded">
+  <div class="loader"></div>
+  <p>Loading</p>
+</div>
+<div class="container mt-3" *ngIf="!productIsLoaded">
+  <form #cartForm="ngForm" (submit)="onSubmit(cartItems)" *ngIf="cartItems.length > 0">
+  
+ <div class="row">
+  <div class="col-sm-8">
+     <div class="cartitem card row">
+      <div class="card-header d-flex"><span>My Cart ({{cartItems.length}})</span>
+      
+    </div>
+      <div class="items" *ngFor="let cartItem of cartItems">
+        <div class="card-body row" *ngIf="userId===cartItem.creator">
+            <div class="col-sm-2 d-flex cart-image-section">
+                <img class="w-100" [src]="cartItem.images">
+                
+              </div>
+              <div class="col-sm-6">
+                <h5>{{cartItem.title}}</h5>
+                <h6><small>{{cartItem.desc}}</small></h6>
+                <div class="d-flex flex-row">
+                <h6 class="text-default">{{cartItem.price | currency:"₹":'symbol':'1.0'}} </h6>
+                <h6 class="text-muted px-3"><del>{{cartItem.actualprice | currency:"₹":'symbol':'1.0'}} </del></h6>
+                <h6 class="text-success">{{cartItem.offerPrice}}% off</h6>
+
+                
+                </div>
+              <p><button type="button" (click)="removeItem(cartItem)" type="button" class="btn btn-sm btn-outline-danger"><i class='material-icons'>
+                  delete
+                </i></button></p>
+              </div>
+              <div class="col-sm-4">
+                  <p>Delivery by Wed Aug 28</p>
+              </div>
+              <div class="col-sm-12">
+                <div class="d-flex flex-row col-sm-3 justify-content-start qnty-section">
+                  <button [disabled]="cartItem.quantity === 1" (click)="decrese(cartItem)" type="button" class="btn btn-sm mr-1 btn-outline-secondary rounded-circle">
+                      <i class='material-icons'>
+                          remove
+                        </i>
+                  </button>
+                  <input type="text" readonly  #quantity class="mr-2 form-control" name="quantity" [(ngModel)]="cartItem.quantity"/>
+                  <button (click)="increse(cartItem)" type="button" class="btn btn-sm mr-1 btn-outline-secondary rounded-circle">
+                      <i class='material-icons'>
+                          add
+                        </i>
+                  </button>
+                </div></div>
+
+        </div>
+       
+        </div>
+        <div class="card-footer d-flex justify-content-end"><button type="button" (click)="isPlaceOrder=true" class="btn btn-lg btn-warning">Place Order</button></div>
+
+
+  </div>
+  <div class="card row mt-3" *ngIf="isPlaceOrder">
+      <div class="card-header">Select Address</div>
+      <div class="card-body">
+    <div class="addresses" *ngFor="let addr of addList; let i=index">
+      <div class="d-flex flex-row">
+        <p class="mr-2"><input type="radio" #addrvalue name="selectaddress" (change)="here(addr.id)" [value]="addr.id"></p>
+        <div>
+          
+            <h6 class="font-weight-bold">{{addr.name}} {{addr.phone}} -  <span class="badge badge-secondary"> {{addr.addtype}}</span></h6>
+              <p class="text-default">
+                {{addr.address}}  {{addr.location}}  
+                <br/>
+                {{addr.city}} {{addr.state}}  {{addr.pincode}}
+              </p>
+             
+              <p><button  [id]="addr.id" type="submit" *ngIf="deliverhere" class="btn btn-warning">Delivery Here</button></p>
+        </div>
+      </div>
+    </div>
+    
+      </div>
+      <div class="card-footer"><button class="btn btn-primary">Add New Address</button></div>
+    </div>
+</div>
+<div class="col-sm-4">
+    <div class="card ">
+      <div class="card-header">PRICE DETAILS</div>
+
+<div class="card-body">
+  <div class="price-detail-products">
+    <ul class="pl-0">
+      <li class="d-flex justify-content-between">
+        <label>Price ({{cartItems.length}} items)</label>
+        <label class="font-weight-bold">{{TotalPrice | currency : "₹"}}</label>
+      </li>
+      <li class="d-flex justify-content-between">
+          <label>Delivery</label>
+          <label class="text-success">{{DelivaryCharge==0?'Free':DelivaryCharge}}</label>
+        </li>
+    </ul>
+
+    <div class="Total">
+        <ul class="pl-0">
+            <li class="d-flex justify-content-between">
+              <label>Total Price</label>
+              <label class="font-weight-bold">{{TotalPrice+DelivaryCharge | currency : "₹" : symbol:'1.0'}}</label>
+            </li>
+            </ul>
+    </div>
+
+
+    <div class="totalsave">
+        <label class="text-success font-weight-lighter">You save total {{totalSave | currency : "₹" : symbol:'1.0'}} on this Order.</label>
+    </div>
+  </div>
+</div>
+  
+    </div>
+  </div>
+</div>
+
+
+
+</form>
+
+
+<div class="empty-cart w-100" *ngIf="cartItems.length === 0">
+  <div class="card">
+    <div class="card-header">
+      My Cart
+    </div>
+    <div class="card-body">
+      <div class="empty text-center">
+         <p>
+           <i class='material-icons' style="font-size:100px;">
+              add_shopping_cart
+            </i>
+          </p> 
+          <h4>Your Cart is Empty</h4>
+          <p>Add Items to it!</p>
+          <p><a routerLink="/products" class="btn btn-primary">Continue Shopping</a></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="empty-cart w-100" *ngIf="thankyoupage">
+  <div class="card">
+    <div class="card-header text-success">
+     Your order Success 
+    </div>
+    <div class="card-body">
+      <div class="empty text-center">
+         <p>
+          <i class='material-icons text-success'>
+            check_circle
+          </i>
+          </p> 
+          <h4>Thank you For Puchanging your order placed Successfully.</h4>
+         
+          <p><a routerLink="/products" class="btn btn-primary">Continue Shopping</a></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>

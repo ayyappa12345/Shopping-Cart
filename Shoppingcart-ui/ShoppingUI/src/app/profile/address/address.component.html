@@ -1,0 +1,93 @@
+
+  <div class="card">
+    <div class="card-header d-flex"><span>Manage Address</span>
+      <span class="spacer"></span>
+      <button class="btn btn-primary" (click)="addnew=true">Add New Address</button>
+    </div>
+
+    <div class="card-body">
+<div class="form" *ngIf="addnew">
+
+    
+      <form [formGroup]="addressform" (submit)="onSubmitAddress(addressform)">
+          <div class="form-group">
+              <label>Name</label>
+              <input class="form-control" type="text" formControlName="name">
+              </div>
+
+              <div class="form-group">
+                  <label>Phone</label>
+                  <input class="form-control" type="text" formControlName="phone">
+                  </div>
+                  <div class="form-group">
+                      <label>Address</label>
+                      <textarea formControlName="address" class="form-control"></textarea>
+                   
+                      </div>
+         
+        <div class="form-group">
+            <label>Location</label>
+            <input class="form-control" type="text" formControlName="location">
+            </div>
+            <div class="form-group">
+                <label>City</label>
+                <input class="form-control" type="text" formControlName="city">
+                </div>
+                <div class="form-group">
+                    <label>state</label>
+                    <input class="form-control" type="text" formControlName="state">
+                    </div>
+
+                <div class="form-group">
+                  <p>Address Type</p>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" formControlName="addtype" value="Home">Home
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                      <label class="form-check-label">
+                        <input type="radio" class="form-check-input" formControlName="addtype" value="Work">Work
+                      </label>
+                    </div>
+                  </div>
+               
+          <div class="form-group">
+              <button class="btn btn-light" (click)="addnew=true" type="button">Cancel</button>
+          <button class="btn btn-primary">Save Address</button>
+          
+          </div>
+            
+          
+            </form>
+
+ 
+</div>
+<ng-container *ngIf="addresses">
+      <ul *ngFor="let addr of addresses" class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="d-flex">
+              <p class="badge badge-secondary">{{addr.addtype}}</p>
+              <span class="spacer"></span>
+              <button (click)="deleteAddress(addr.id)" class="btn btn-outline-danger btn-sm"><i class='material-icons'>
+                  delete
+                </i>
+                </button>
+          </div>
+          
+          <h6 class="font-weight-bold">{{addr.name}} - {{addr.phone}}</h6>
+          <p class="text-default">
+            {{addr.address}}  {{addr.location}}  
+            <br/>
+            {{addr.city}} {{addr.state}}  {{addr.pincode}}
+          </p>
+         
+        </li>
+      </ul>
+</ng-container>
+
+<ng-container *ngIf="!addresses && !addnew">
+<p class="text-center font-italic text-danger">No Address are found</p>
+</ng-container>
+    </div>
+  </div>

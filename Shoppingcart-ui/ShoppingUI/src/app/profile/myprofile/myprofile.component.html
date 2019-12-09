@@ -1,0 +1,55 @@
+<div class="container d-flex flex-column justify-content-center grid-container mt-3 align-items-center h-50" *ngIf="productIsLoaded">
+  <div class="loader"></div>
+  <p>Loading</p>
+</div>
+<div class="container" *ngIf="!isProductLoaded">
+<div class="card">
+<div class="card-header">Profile Information</div>
+<form [formGroup]="profileForm" (submit)="onSubmit(profileForm)"><div class="card-body row">
+  
+<div class="col-sm-8">
+  <div class="form-group">
+    <label>Fullname</label>
+    <input class="form-control" formControlName="fullname"/>
+  </div>
+  <div class="form-group">
+      <label>Username</label>
+      <input class="form-control" formControlName="username"/>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" formControlName="email"/>
+      </div>
+      <div class="form-group">
+          <p>Gender</p>
+            <div class="form-check-inline">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" formControlName="gender" value="male">Male
+                </label>
+              </div>
+              <div class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" formControlName="gender" value="female">Female
+              </label>
+            </div>
+          </div>
+</div>
+<div class="col-sm-4">
+<div class="w-100 d-flex flex-column align-items-center justify-content-center">
+  <img [src]="imagepath" width="150" class="img-thumbnail">
+  <input type="file" #image style="display:none;" (change)="onchangeEvent($event)"/>
+  <button type="button" class="btn mt-2 btn-warning" (click)="image.click()"><i class='material-icons'>
+      open_in_browser
+    </i></button>
+</div>  
+</div>
+
+</div>
+<div class="card-footer text-right">
+<button class="btn btn-primary">Save</button>
+</div>
+
+</form>
+</div>
+
+</div>

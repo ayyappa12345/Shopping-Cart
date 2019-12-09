@@ -1,0 +1,154 @@
+/* You can add global styles to this file, and also import other style files */
+.spacer{
+    flex: 1 1 auto;
+}
+.header{
+    width:100%;
+    padding: 10px 20px;
+    background: #fff;
+    color: #222;
+}
+.header .logo{
+    color:#fff;
+}
+.header ul{
+    list-style: none;
+    margin:0;
+}
+.header ul li, .header ul li a{
+    color: #333;
+}
+.grid-container
+{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+}
+.product{
+    display: flex;
+    flex-direction: column;
+    transition: all ease .2s;
+    position: relative;
+}
+.product:hover
+{
+    box-shadow: 0 0 6px #666;   
+}
+.product .card-footer{
+    justify-content: flex-end;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    
+
+}
+.color{
+    color:#567aff;
+}
+.product-image, .product-image img{
+    max-width: 100%
+}
+.productview .btns{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 10px;
+}
+.Total{
+    border-top:1px dashed #222;
+    margin-top:15px;
+    padding: 25px 0
+}
+.cart-image-section{
+    flex-direction: column;
+}
+.cart-qnty-section{
+    flex-direction: row;
+}
+.qnty-section i{
+    font-size: 14px;
+}
+.qnty-section .form-control{
+    line-height: 1;
+    width: 45px;
+    text-align: center;
+}
+.user-form{
+    flex: auto;
+}
+.register-link{
+    border-top: 1px solid #a7a9a9;
+}
+.user-form-wrapper
+{
+    background: #d4d4d47a;
+    border: 1px solid #bbb;
+}
+.product .image{
+       text-align:center;
+}
+.product .image img{
+    max-width: 100%;
+    max-height: 256px;
+}
+.product .product-body{
+    padding:10px;
+}
+
+.product-footer{
+    visibility: hidden;
+    opacity: 0;
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    flex-direction: row;
+    align-items: center;
+    background: #ea626229;
+    bottom: 0;
+}
+.product .price{
+    font-weight: bold
+}
+.cartitem select{
+    width:200px;
+}
+img.profile{
+    border:1px soilid #dadada;
+}
+ul.offers{
+    list-style-type: none;
+}
+.loader {
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
+  }
+  div.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top:10px;
+    display:inline-block;
+  }
+  .v-align-top{
+      vertical-align: top;
+
+      display:inline-block;
+  }
+  .background{
+      background: url(./assets/images/background-shopping.png) 0 0 fixed;
+      background-size: 100% 100%;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+  }
+  .panel.grid-1{
+      display: grid;
+      grid-template-columns: 50px auto;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

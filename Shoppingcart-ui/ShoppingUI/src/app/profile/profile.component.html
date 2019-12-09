@@ -1,0 +1,38 @@
+<div class="container d-flex flex-column justify-content-center grid-container mt-3 align-items-center h-50" *ngIf="productIsLoaded">
+  <div class="loader"></div>
+  <p>Loading</p>
+</div>
+
+<div class="container mt-3" *ngIf="!productIsLoaded">
+  <div class="row" *ngIf="userdata">
+<div class="col-sm-4">
+  <div class="w-100 mb-3">
+      <ul class="list-group">
+          <li class="list-group-item panel grid-1">
+      <img class="profile" data-toggle="dropdown" [src]="userdata.profilePic"  width="50" class="rounded-circle"/>
+    <h6 class="d-flex flex-column p-2"><small class="small">Hello</small>
+      {{userdata.fullname}}</h6>
+      </li>
+      </ul>
+  </div>
+  
+
+    <div class="w-100">
+      <ul class="list-group">
+<li class="list-group-item" routerLinkActive="bg-light">
+  <a routerLink="/myprofile" class="text-dark w-100"><i class='material-icons'>person</i> My Profile</a>
+</li>
+<li class="list-group-item" routerLinkActive="bg-light">
+    <a routerLink="/myorders" class="text-dark w-100"><i class='material-icons'>location_on</i> My Orders</a>
+  </li>
+<li class="list-group-item" routerLinkActive="bg-light">
+    <a routerLink="/manageaddress" class="text-dark w-100"><i class='material-icons'>location_on</i> Manage Addresses</a>
+  </li>
+      </ul>
+    </div>
+</div>
+<div class="col-sm-8">
+<router-outlet></router-outlet>
+</div>
+  </div>
+</div>

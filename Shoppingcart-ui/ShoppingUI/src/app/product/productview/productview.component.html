@@ -1,0 +1,50 @@
+<div class="container d-flex flex-column justify-content-center grid-container mt-3 align-items-center h-50" *ngIf="productIsLoaded">
+  <div class="loader"></div>
+  <p>Loading</p>
+</div>
+<div class="container mt-3" *ngIf="!productIsLoaded">
+<div class="productview" *ngIf="product">
+    <div class="sticky" style="width:35%">
+        <div class="product-image">
+          <img [src]="product.images">
+        </div>
+        <div class="btns mt-3">
+          <button class="btn-lg btn btn-warning" (click)="addcart(product)">Add To Cart</button>
+          <button class="btn-lg btn btn-primary" (click)="buynow(product)">Buy Now</button>
+        </div>
+      </div>
+      <div class="v-align-top pl-4" style="width:65%;">
+        <h4>{{product.title}}</h4>
+        <p>{{product.desc}}</p>
+        <div class="d-flex flex-row justify-conent-around">
+        <h5 class="font-weight-bold">{{product.price | currency:"₹" : symbol:'1.0'}}</h5>
+        <h5 class="text-secondary px-3"><del>{{product.actualprice | currency:"₹" : symbol:'1.0'}}</del></h5>
+        <h5 class="text-success">{{product.offerprice}} % off</h5>
+      </div>
+<ul class="list-group offers d-flex flex-column">
+  <li class="d-flex flex-row">
+    <i class='material-icons pl-2 text-success'>
+      date_range
+    </i> 
+    <p><span class="font-weight-bold">No Cost EMI</span> on Onlineshopping Axis Bank Credit Card</p></li>
+    <li class="d-flex flex-row"><i class='material-icons pl-2 text-success'>
+        label
+      </i> <p><span class="font-weight-bold">Special Price</span> Get extra 51% off (price inclusive of discount)</p></li>
+      <li class="d-flex flex-row"><i class='material-icons pl-2 text-success'>
+          label
+        </i> <p><span class="font-weight-bold">Bank Offer</span> 5%  Unlimited Cashback on Flipkart Axis Bank Credit Card</p></li>
+        <li class="d-flex flex-row"><i class='material-icons pl-2 text-success'>
+            label
+          </i> <p><span class="font-weight-bold">Bank Offer</span>   5% Cashback* on HDFC Bank Debit Cards</p></li>
+          <li class="d-flex flex-row"><i class='material-icons pl-2 text-success'>
+              label
+            </i> <p><span class="font-weight-bold">Bank Offer</span>   Extra 5% off* with Axis Bank Buzz Credit Card</p></li>
+      
+                          
+    </ul>
+
+      </div>
+
+</div>
+  
+</div>
